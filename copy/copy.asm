@@ -1,9 +1,12 @@
+; Summary: copy bytes of a file to another file, creating the other file if it doesn't exist
+; Date: May 23 2021
+; Example: ./copy file1.txt file2.txt
+
 section .text
 
 global      _start 
 
 _start: 
-
 
     ; check that only 2 args passed to program
     CMP     BYTE [rsp], 3
@@ -22,12 +25,12 @@ _start:
 
 .E1:
 
-    ; load 1st program argument to from_filepath
+    ; load 1st program argument to pre-allocated address space at from_filepath
     MOV     rdi, [rsp + 16]
     MOV     rsi, from_filepath
     CALL    _load_program_arg
 
-    ; load 2nd program argument to to_filepath
+    ; load 2nd program argument to pre-allocated address space at to_filepath
     MOV     rdi, [rsp + 24]
     MOV     rsi, to_filepath
     CALL    _load_program_arg
@@ -39,7 +42,6 @@ _start:
     MOV     rdx, 0644o
     SYSCALL
 
-    ; hold read file fd
     MOV     r12, rax
 
 ; check if read file successfully opened
@@ -84,6 +86,7 @@ _start:
 
 .E3:
 
+; read byte-by-byte from read file and write to write file until EOF of read file
 .L1:
 
     ; read byte from read file

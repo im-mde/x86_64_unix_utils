@@ -1,9 +1,12 @@
+; Summary: print bytes of a file to stdout
+; Date: May 23 2021
+; Example: ./printfile file.txt
+
 section .text
 
 global      _start 
 
 _start: 
-
 
     ; check that only 1 arg passed to program
     CMP     BYTE [rsp], 2
@@ -27,7 +30,6 @@ _start:
     MOV     rsi, filepath
     CALL    _load_program_arg
 
-    ; save length of arg
     MOV     rbx, rax
 
     ; open read file
@@ -37,7 +39,6 @@ _start:
     MOV     rdx, 0644o
     SYSCALL
 
-    ; hold file fd
     MOV     r12, rax
 
 ; check if read file successfully opened
@@ -68,9 +69,9 @@ _start:
 
 .E2:
 
+; read byte-by-byte from file and write to stdout until EOF
 .L1:
 
-    ; read byte from read file
     MOV     rax, 0
     MOV     rdi, r12
     MOV     rsi, buffer
@@ -80,7 +81,6 @@ _start:
     CMP     rax, 0
     JE      .L2
 
-    ; write byte to stdout
     MOV     rax, 1
     MOV     rdi, 1
     MOV     rsi, rsi
