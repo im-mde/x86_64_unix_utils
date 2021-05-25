@@ -107,21 +107,20 @@ _terminate:
 ; rax (ret): number of bytes of program arg
 _load_program_arg:
 
-    MOV     r12, 0
+    MOV     rax, 0
 
 .L1:
 
-    CMP     BYTE [rdi + r12], 0
+    CMP     BYTE [rdi + rax], 0
     JE      .L2
     
-    MOV     r13, [rdi + r12]
-    MOV     [rsi + r12], r13
-    ADD     r12, 1
+    MOV     rdx, [rdi + rax]
+    MOV     [rsi + rax], rdx
+    ADD     rax, 1
     JMP     .L1
 
 .L2:
 
-    MOV     rax, r12
     RET
 
 section .data
