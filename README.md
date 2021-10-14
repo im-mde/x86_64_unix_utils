@@ -1,10 +1,10 @@
 # x86-64 Unix Utilities
-Repository containg basic x86-64 NASM assembly utilties demonstrating Linux 
+Repository containing basic x86-64 NASM assembly utilties demonstrating Linux 
 system calls.
 
 ## Assembling and Linking
-The utilities written in this repository are build around the NASM assembler 
-which is a requirement for assembly. Additionally, it is using 64 bit mode that
+The utilities written in this repository are built around the NASM assembler 
+which is a requirement for assembly. Additionally, it is using 64 bit mode which
 will need to be specified in the assembly command.
 
 ``` nasm -f elf64 src/printwd.asm -o build/printwd.o ```
