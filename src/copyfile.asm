@@ -1,6 +1,6 @@
 ; Summary: copy bytes of a file to another file, creating the other file if it doesn't exist
 ; Date: May 23 2021
-; Example: ./copy file1.txt file2.txt
+; Example: ./copyfile file1.txt file2.txt
 
 section .text
 
