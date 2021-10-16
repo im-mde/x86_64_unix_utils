@@ -1,3 +1,4 @@
 *.sh
 *.txt
+*.o
 build/
