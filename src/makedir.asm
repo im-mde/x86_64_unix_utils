@@ -1,6 +1,6 @@
 ; Summary: create new directory from path given in program argument
 ; Date: May 29 2021
-; Example: ./maked dir
+; Example: ./makedir dir
 
 section .text
 
